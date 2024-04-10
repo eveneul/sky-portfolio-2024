@@ -1,9 +1,8 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-const isProduction = process.env.NODE_ENV === "production";
-
+// 환경 변수에서 BASE_URL을 읽어와 설정합니다.
 export default defineConfig({
-  base: isProduction ? "/sky-portfolio-2024/" : "/",
   plugins: [react()],
+  base: "/sky-portfolio-2024/",
 });
