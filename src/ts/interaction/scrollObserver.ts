@@ -9,9 +9,7 @@ class ScrollObserver {
     this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          console.log(entry.target);
           if (entry.isIntersecting) {
-            console.log(entry.target, "sss", entry.isIntersecting);
             entry.target.classList.add("in-view");
             entry.target.classList.add("in-view-from-bottom");
           } else {
