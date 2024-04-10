@@ -7,12 +7,14 @@
     "dev": "vite",
     "build": "tsc || true && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "vite build && gh-pages -d dist"
   },
   "dependencies": {
     "@react-three/drei": "^9.105.2",
     "@react-three/fiber": "^8.16.1",
     "@studio-freight/lenis": "^1.0.42",
+    "gh-pages": "^6.1.1",
     "leva": "^0.9.35",
     "lil-gui": "^0.19.2",
     "react": "^18.2.0",
@@ -36,5 +38,6 @@
     "tailwindcss": "^3.4.3",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
-  }
+  },
+  "homepage": "https://eveneul.github.io/sky-portfolio-2024/"
 }
