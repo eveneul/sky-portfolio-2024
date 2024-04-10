@@ -17,7 +17,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter basename={import.meta.env.VITE_PUBLIC_URL}>
+      <BrowserRouter>
         <Layout>
           <Routes>
             {RoutesData.map((route) => {
