@@ -164,6 +164,11 @@ em {
   @apply not-italic;
 }
 
+body {
+  width: 100%;
+  overflow: hidden;
+}
+
 .works-list {
   @apply relative;
   padding: 147px 0;
@@ -299,17 +304,18 @@ em {
 }
 
 .split-text {
+  clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  transition: clip-path 0.45s;
   span {
-    transform: perspective(1000px) rotate3d(1, 0, 0, 90deg);
-    transform-origin: bottom center;
-    transition: transform 0.3s;
+    /* transform: perspective(1000px) rotate3d(1, 0, 0, 90deg); */
+    /* transform-origin: bottom center; */
   }
 
-  &.in-view {
+  /* &.in-view {
     span {
       transform: perspective(1000px) rotate3d(1, 0, 0, 0deg);
     }
-  }
+  } */
 }
 
 .intro-view {
@@ -363,6 +369,18 @@ em {
 
     .intro-bg {
       opacity: 0;
+    }
+  }
+}
+
+.sc-contact {
+  .split-text {
+  }
+  &.in-view-from-bottom {
+    .split-text {
+      clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+      span {
+      }
     }
   }
 }

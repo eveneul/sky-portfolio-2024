@@ -9,7 +9,10 @@ export default function SplitText({
     <div
       className={`split-text relative flex justify-center items-center uppercase ${style}`}
     >
-      {text.split("").map((char, index) => {
+      <span style={{}} className="inline-block">
+        {text}
+      </span>
+      {/* {text.split("").map((char, index) => {
         return (
           <span
             key={index}
@@ -21,7 +24,7 @@ export default function SplitText({
             {char}
           </span>
         );
-      })}
+      })} */}
     </div>
   );
 }

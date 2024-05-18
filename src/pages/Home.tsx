@@ -72,7 +72,9 @@ export default function Home(lenis: Lenis | null) {
       setTextModelTransform(transformTextModelScale);
     }
 
-    setCircleWidth(transformCircleScale);
+    if (transformCircleScale > 0) {
+      setCircleWidth(transformCircleScale);
+    }
     if (circleWrapTop && circleWrapTop > 0) {
       setCircleWidth(0);
     }
@@ -85,27 +87,47 @@ export default function Home(lenis: Lenis | null) {
     if (contectTop && contectTop < 30) {
     }
   }, [lenisValue]);
-  useEffect(() => {
-    const workSectTitle = document.querySelector(".sc-work h2 .split-text");
-    const contactTitle1 = document.querySelector(".introduce-1 .split-text");
-    const contactTitle2 = document.querySelector(".introduce-2 .split-text");
-    const contactTitle3 = document.querySelector(".introduce-3 .split-text");
-    const contactTitle4 = document.querySelector(".introduce-4 .split-text");
 
-    if (
-      !workSectTitle ||
-      !contactTitle1 ||
-      !contactTitle2 ||
-      !contactTitle3 ||
-      !contactTitle4
-    )
-      return;
-    const inviewObserver = new ScrollObserver();
-    inviewObserver.observeElement(workSectTitle);
-    inviewObserver.observeElement(contactTitle1);
-    inviewObserver.observeElement(contactTitle2);
-    inviewObserver.observeElement(contactTitle3);
-    inviewObserver.observeElement(contactTitle4);
+  useEffect(() => {
+    const splitTexts = document.querySelectorAll(".split-text");
+    if (splitTexts.length === 0 || !splitTexts) return;
+    splitTexts.forEach((splitText: HTMLElement, i) => {
+      splitText.style.transitionDelay = `${i * 100}ms`;
+    });
+  }, []);
+
+  useEffect(() => {
+    const observer = new ScrollObserver();
+    const contectSection = document.querySelector(".sc-contact");
+    const workSectTitle = document.querySelector(".sc-work h2 .split-text");
+    if (contectSection) {
+      observer.observeElement(contectSection);
+    }
+
+    if (workSectTitle) {
+      observer.observeElement(workSectTitle);
+    }
+    // const contactTitle1 = document.querySelector(".introduce-1 .split-text");
+    // const contactTitle2 = document.querySelector(".introduce-2 .split-text");
+    // const contactTitle3 = document.querySelector(".introduce-3 .split-text");
+    // const contactTitle4 = document.querySelector(".introduce-4 .split-text");
+    // const elements = [
+    //   workSectTitle,
+    //   contactTitle1,
+    //   contactTitle2,
+    //   contactTitle3,
+    //   contactTitle4,
+    // ];
+    // if (elements.length === 0 || !elements) return;
+    // const inviewObserver = new ScrollObserver();
+    // elements.forEach((element, i) => {
+    //   inviewObserver.observeElement(element);
+    // });
+    // inviewObserver.observeElement(workSectTitle);
+    // inviewObserver.observeElement(contactTitle1);
+    // inviewObserver.observeElement(contactTitle2);
+    // inviewObserver.observeElement(contactTitle3);
+    // inviewObserver.observeElement(contactTitle4);
   }, []);
 
   return (
@@ -124,9 +146,9 @@ export default function Home(lenis: Lenis | null) {
           ref={circleRef}
         >
           <i
-            className="block h-[auto] aspect-square bg-white rounded-[50%] absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]"
+            className="block h-[auto] aspect-square bg-white rounded-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 origin-center w-[1px]"
             style={{
-              width: `${circleWidth}px`,
+              transform: `scale(${circleWidth})`,
             }}
           ></i>
         </div>
@@ -141,7 +163,7 @@ export default function Home(lenis: Lenis | null) {
         </div>
       </section>
       <section
-        className="bg-black w-full h-screen flex flex-col justify-center items-center"
+        className="sc-contact bg-black w-full h-screen flex flex-col justify-center items-center"
         ref={contactRef}
       >
         <div className="flex flex-col  justify-center">
@@ -153,7 +175,7 @@ export default function Home(lenis: Lenis | null) {
             좋아하며
           </div>
           <div className="text-64 font-kr text-white uppercase flex items-center introduce-3">
-            최고의{" "}
+            최고의
             <SplitText text="performance" style="font-en translate-y-10" />를
             창작하는
           </div>
